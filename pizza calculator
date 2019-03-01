@@ -1,0 +1,53 @@
+-----------------------------------------------------------------------------------------
+-- lua
+--
+-- how to calculate the cost of a pizza
+--
+-- feb 21 2019
+--
+-- Joshua van der Laan 
+-----------------------------------------------------------------------------------------
+
+
+
+local number1OfSquareTextField = native.newTextField( display.contentCenterX, display.contentCenterY , 200, 75 )
+number1OfSquareTextField.id = "length textField"
+
+local myText = display.newText( "number of pizzas", display.contentCenterX, display. contentCenterY - 50 , native.systemFont, 20 )
+
+myText:setFillColor( 255/255, 255/255, 255/255 )
+
+local diameterOfSquareTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 125, 200, 75 )
+diameterOfSquareTextField.id = "length textField"
+
+local myText = display.newText( "Pizzas diameter in inches", display.contentCenterX, display. contentCenterY + 75 , native.systemFont, 20 )
+
+myText:setFillColor( 255/255, 255/255, 255/255 )
+
+
+local areaOfSquareTextField = display.newText( "Answer", display.contentCenterX, display.contentCenterY - 200, native.systemFont, 20)
+areaOfSquareTextField.id = "area textField"
+areaOfSquareTextField:setFillColor( 1, 1, 1 )
+
+local calculateButton = display.newImageRect( "bigboy.jfif", 200, 100 )
+calculateButton.x = display.contentCenterX
+calculateButton.y = display.contentCenterY + 225
+calculateButton.id = "calculate button"
+ 
+local function calculateButtonTouch( event )
+    -- this function calculates the area of a square given the length of one of its sides
+ 
+    local number1OfSquare
+    local diameterOfSquare
+    local costOfPizza
+ 
+    diameterOfSquare = diameterOfSquareTextField.text
+    number1OfSquare = number1OfSquareTextField.text
+    areaOfSquare = ((number1OfSquare * 1.75)  + (diameterOfSquare * .5)) * 1.13
+    -- print( areaOfSquare )
+    areaOfSquareTextField.text = "The cost is " .. areaOfSquare
+
+    return true
+end
+
+calculateButton:addEventListener( "touch", calculateButtonTouch )
